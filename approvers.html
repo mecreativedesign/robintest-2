@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Information -->
+    <meta charset="UTF-8">
+    <meta name="description" content="Invoice List">
+    <meta name="keywords" content="list of invoice, table">
+    <meta name="author" content="Robin Saha">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Title Information -->
+    <title>Approvers Form</title>
+
+    <!-- CSS Information -->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrap-reset.css" rel="stylesheet">
+	<link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
+
+	<link href="css/style.css" rel="stylesheet">
+	<link href="css/style-responsive.css" rel="stylesheet" />
+
+</head>
+	<body ng-app="approverApp" ng-controller="approverCtrl" ng-init="loadData();">
+		<section id="container" >
+			<!--header start-->
+			<header class="header fixed-top clearfix">
+				<!--logo start-->
+				<div class="brand">
+					<a href="index.html" class="logo">
+					<img src="images/logo.png" alt="">
+					</a>					
+				</div>
+				<!--logo end-->
+			</header>
+			<!--header end-->
+			<aside>
+				<div id="sidebar" class="nav-collapse">
+                <!-- sidebar menu start-->            
+                <div class="leftside-navigation">
+                    <ul class="sidebar-menu" id="nav-accordion">
+                        <li>
+                            <a href="users.html">
+                                <i class="fa fa-plus-circle"></i>
+                                    <span>Add Invoice</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="approvers.html">
+                                <i class="fa fa-list-ul"></i>
+                                    <span>List of Invoice</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- sidebar menu end-->
+            </div>
+			</aside>
+			<!--sidebar end-->
+			<!--main content start-->
+			<section id="main-content" class="">
+				<section class="wrapper">
+					<!-- page start-->
+					<div class="row">
+						<div class="col-lg-12">
+							<section class="panel">
+								<header class="panel-heading">
+									Invoice Approvers
+								</header>
+								
+									<div class="clearfix"></div>
+									<div class="table-responsive">
+										<div class="nav action-buttons">
+											<a href="#" ng-model="selectedAll" ng-click="checkAll()" class="btn btn-default">Select All</a>
+											<a href="#" ng-click="changeStatusBulk('Approved')" class="btn btn-info">Approve</a>
+											<a href="#" ng-click="changeStatusBulk('Rejected')" class="btn btn-warning">Reject</a>
+											<a href="#" ng-click="removeItemBulk()" class="btn btn-danger">Delete</a>
+										</div>
+                                        <div class="tabledata">
+                                            <table class="table table-bordered table-hover">
+                                                <thead class="headcolor">
+                                                    <th>Select</th>
+                                                    <th>Invoice No</th>
+                                                    <th>Invoice Date</th>
+                                                    <th>Invoice Amount</th>
+                                                    <th>Invoice Due Date</th>
+                                                    <th>Customer No</th>
+                                                    <th>Customer Country</th>
+                                                    <th>Item Name</th>
+                                                    <th>Item Cost</th>
+                                                    <th>Status</th>
+                                                    <th>Actions</th>
+                                                </thead>
+                                                <tbody>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td><input ng-model="search.invoice_amount" type="text" class="form-control itemname" name="from"></td>
+                                                    <td><input ng-model="search.invoice_due_date_other" type="text" class="form-control itemname" name="from"></td>
+                                                    <td><input ng-model="search.customer_number" type="text" class="form-control itemname" name="from"></td>
+                                                    <td><input ng-model="search.customer_country" type="text" class="form-control itemname" name="from"></td>
+                                                    <td><input ng-model="search.item_name" type="text" class="form-control itemname" name="from"></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <tr ng-show="users!=''" ng-repeat="user in users | filter:{invoice_amount: search.invoice_amount, invoice_due_date_other: search.invoice_due_date_other,customer_number:search.customer_number,customer_country:search.customer_country,item_name:search.item_name}">
+                                                        <td class="check"> 
+                                                            <label><input type="checkbox" name="ids[]" ng-model="user.selected" value="user.userId"></label>
+                                                        </td>
+                                                        <td>{{user.invoice_no}}</td>
+                                                        <td>{{user.invoice_date_other}}</td>
+                                                        <td>{{user.invoice_amount}}</td>
+                                                        <td>{{user.invoice_due_date_other}}</td>
+                                                        <td>{{user.customer_number}}</td>
+                                                        <td>{{user.customer_country}}</td>
+                                                        <td>{{user.item_name}}</td>
+                                                        <td>{{user.item_cost}}</td>
+                                                        <td>{{user.status}}</td>
+                                                        <td>
+                                                            <a href="edituser.html?id={{user.userId}}" class="link">Edit</a>&nbsp;
+                                                            <a href="#" ng-click="changeStatus(user.userId,'Approved')" class="link">Approve</a>&nbsp;
+                                                            <a href="#" ng-click="changeStatus(user.userId,'Rejected')" class="link">Reject</a>&nbsp;
+                                                            <a href="#" ng-click="removeItem(user.userId)" class="link">Delete</a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr ng-show="users==''" style="text-align: center;">
+                                                        <td colspan="13"><strong>No data available</strong></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            
+									</div>
+								</div>
+							</section>
+						</div>
+					</div>
+					<!-- page end-->
+				</section>
+			</section>
+			<!--main content end-->
+		</section>
+		
+        <!-- Placed js at the end of the document so the pages load faster -->
+		<!--Core js-->
+		<script src="js/jquery.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/angular.min.js"></script>
+		<!--My Custom Angular Scripts-->
+		<script src="js/app.js"></script>
+        
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+	</body>
+</html>

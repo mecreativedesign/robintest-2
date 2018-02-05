@@ -1,0 +1,66 @@
+
+
+/*panel*/
+.panel {
+    border: none;
+    box-shadow: none;
+}
+
+.panel-heading {
+    border-color:#eff2f7 ;
+    font-size: 13px;
+    font-weight: 400;
+    background: #fafafa;
+    text-transform: uppercase;
+    padding: 15px;
+}
+
+.panel-title {
+    color: #32323A;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 0;
+    margin-top: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.panel-primary .tools a {
+    color: #fff;
+}
+
+
+
+/*text input*/
+
+.form-control {
+    border: 1px solid #e2e2e4;
+    box-shadow: none;
+    color: #c2c2c2;
+}
+
+
+.form-control:focus, #focusedInput {
+    border: 1px solid #00A8B3;
+    box-shadow: none;
+}
+
+.form-horizontal .control-label {
+    font-weight: 300;
+    font-size: 14px;
+}
+
+input, textarea, select, button {
+    outline: none !important;
+}
+
+
+
+
+/*table*/
+
+.table thead > tr > th, .table tbody > tr > th, .table tfoot > tr > th, .table thead > tr > td, .table tbody > tr > td, .table tfoot > tr > td {
+    padding: 10px;
+}
+
+
+
